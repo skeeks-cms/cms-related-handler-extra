@@ -7,11 +7,14 @@
  */
 namespace skeeks\cms\rhExtra;
 
+use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 use yii\widgets\InputWidget;
 
 class ExtraInputWidget extends InputWidget
 {
+    public static $autoIdPrefix = 'ExtraInputWidget';
+
     /**
      * @var array опции контейнера
      */
@@ -29,7 +32,8 @@ class ExtraInputWidget extends InputWidget
     {
         parent::init();
 
-        $this->options['id'] = $this->id;
+        $this->options['id']        = $this->id . "-widget";
+        $this->clientOptions['id']  = $this->id . "-widget";
     }
 
 
@@ -38,29 +42,27 @@ class ExtraInputWidget extends InputWidget
 	 */
 	public function run()
 	{
-        $inputId = $this->id . "-input";
 
-        $this->clientOptions['inputId'] = $inputId;
+        $element = '';
 
-        $value = '';
         if ($this->hasModel())
         {
-			$input = Html::activeHiddenInput($this->model, $this->attribute);
-            $this->clientOptions['inputId'] = Html::getInputId($this->model, $this->attribute);
-            $value = Html::getAttributeValue($this->model, $this->attribute);
+			/*$element = Html::activeTextInput($this->model, $this->attribute, [
+                'value' => 1
+            ]);*/
+
+            $this->clientOptions['inputName']       = Html::getInputName($this->model, $this->attribute);
+            $this->clientOptions['value']           = $this->model->{$this->attribute};
+            /*$this->clientOptions['elementId'] = Html::getInputId($this->model, $this->attribute);*/
 
 		} else
         {
-            $input = Html::hiddenInput($this->name, $this->value, [
-                'id' => $inputId
-            ]);
-
-            $value = $this->value;
+            throw new InvalidConfigException;
 		}
 
 
         return $this->render('extra-input', [
-            'input'     => $input,
+            'element'     => $element,
         ]);
 	}
 

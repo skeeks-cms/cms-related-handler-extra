@@ -12,6 +12,7 @@ use skeeks\cms\relatedProperties\models\RelatedPropertiesModel;
 use skeeks\cms\relatedProperties\PropertyType;
 use skeeks\cms\widgets\ColorInput;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\widgets\ActiveForm;
 
 /**
@@ -58,16 +59,48 @@ class RelatedHandlerExtra extends PropertyType
     {
         $field = parent::renderForActiveForm();
 
-/*        $field->widget(ColorInput::className(), [
-            'showDefaultPalette'    => (bool) ($this->showDefaultPalette === Cms::BOOL_Y),
-            'useNative'             => (bool) ($this->useNative === Cms::BOOL_Y),
-            'saveValueAs'           => (string) $this->saveValueAs,
-            'pluginOptions'         => $pluginOptions,
-        ]);*/
+
+        $field->widget(ExtraInputWidget::className());
 
         return $field;
     }
 
+    /**
+     * Conversion property value received from the database
+     *
+     * @return $this
+     * @throws models\InvalidParamException
+     */
+    public function initValue($value)
+    {
+        try
+        {
+            $value      = Json::decode($value);
+        } catch (\Exception $e)
+        {
+            $value      = [];
+        }
+
+        return $value;
+    }
+
+    /**
+     * Converting the property value before saving to database
+     *
+     * @return $this
+     */
+    public function beforeSaveValue($value)
+    {
+        try
+        {
+            $value      = Json::encode($value);
+        } catch (\Exception $e)
+        {
+            $value      = "{}";
+        }
+
+        return $value;
+    }
 
     /**
      * @return string
