@@ -1,0 +1,26 @@
+{
+    "name": "skeeks/cms-related-handler-extra",
+    "description": "Related property handler for skeeks cms",
+    "keywords": ["module", "cms", "skeeks", "sx", "yii2"],
+    "homepage": "http://www.skeeks.com/",
+    "type": "yii2-extension",
+    "license": "GPL-3.0+",
+    "support": {
+        "issues": "http://cms.skeeks.com",
+        "source": "https://github.com/skeeks-cms/cms-related-handler-extra"
+    },
+    "authors": [
+        {
+            "name": "Semenov Alexander",
+            "email": "semenov@skeeks.com"
+        }
+    ],
+    "require": {
+        "skeeks/cms": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "skeeks\\cms\\rh\\": ""
+        }
+    }
+}
