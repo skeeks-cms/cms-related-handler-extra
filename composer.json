@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "skeeks\\cms\\rh\\": ""
+            "skeeks\\cms\\rhExtra\\": ""
         }
     }
 }
