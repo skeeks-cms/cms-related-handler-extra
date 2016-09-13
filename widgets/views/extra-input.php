@@ -14,6 +14,9 @@ $widget = $this->context;
 
 <?= \yii\helpers\Html::beginTag('div', $widget->options); ?>
         <div>
+            <? echo \yii\helpers\Html::hiddenInput(
+                \yii\helpers\Html::getInputName($widget->model, $widget->attribute)
+            ); ?>
             <?= $element; ?>
         </div>
 
