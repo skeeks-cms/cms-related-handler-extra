@@ -120,4 +120,24 @@ class RelatedHandlerExtra extends PropertyType
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getStringValue()
+    {
+        $value = $this->property->relatedPropertiesModel->getAttribute($this->property->code);
+
+        $result = [];
+        if (is_array($value))
+        {
+            foreach ($value as $row)
+            {
+                $result[] = implode(": ", $row);
+            }
+        }
+
+        return implode("; ", $result);
+
+    }
 }

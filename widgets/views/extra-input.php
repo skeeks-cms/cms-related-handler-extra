@@ -22,6 +22,8 @@ $widget = $this->context;
         <a class="btn btn-default btn-sm sx-btn-add-row"><i class="glyphicon glyphicon-plus"></i> <?= \Yii::t('skeeks/cms', 'Add')?></a>
 
 <?
+\yii\jui\Sortable::widget();
+
 $jsOptions = \yii\helpers\Json::encode($widget->clientOptions);
 
 $this->registerCss(<<<CSS
@@ -29,6 +31,7 @@ $this->registerCss(<<<CSS
 {
     margin-top: 0px;
     margin-bottom: 10px;
+    cursor: move;
 }
 CSS
 );
@@ -53,6 +56,18 @@ $this->registerJs(<<<JS
             self.jElementsWrapper = $('.sx-elements-wrapper', self.jWrapper);
             self.jValuesWrapper = $('.sx-values-wrapper', self.jWrapper);
             self.jAddRow = $('.sx-btn-add-row', self.jWrapper);
+
+            self.jElementsWrapper.sortable(
+                {
+                    /*cursor: "move",
+                    handle: ".sx-btn-move",*/
+                    forceHelperSize: true,
+                    forcePlaceholderSize: true,
+                    opacity: 0.5,
+                    placeholder: "ui-state-highlight",
+                }
+            );
+
 
             self.jAddRow.on('click', function()
             {
@@ -90,18 +105,19 @@ $this->registerJs(<<<JS
                 'class': 'form-control',
                 'type': 'text',
                 'value': name,
-                'name': self.get('inputName') + '[' + this.counter + '][value]',
+                'name': self.get('inputName') + '[' + this.counter + '][name]',
             });
 
             var jInputVal = $("<input>", {
                 'class': 'form-control',
                 'type': 'text',
                 'value': value,
-                'name': self.get('inputName') + '[' + this.counter + '][name]',
+                'name': self.get('inputName') + '[' + this.counter + '][value]',
             });
 
-            var jRemoveBtn = $("<button>", {
-                'class': 'btn btn-sm',
+            var jRemoveBtn = $("<a>", {
+                'href': '#',
+                'class': 'btn btn-sm btn-default',
             }).append('<i class="glyphicon glyphicon-remove"></i>');
 
 
