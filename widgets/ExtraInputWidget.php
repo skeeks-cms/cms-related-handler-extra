@@ -33,6 +33,7 @@ class ExtraInputWidget extends InputWidget
         parent::init();
 
         $this->options['id']        = $this->id . "-widget";
+        $this->options['class']     = "";
         $this->clientOptions['id']  = $this->id . "-widget";
     }
 
