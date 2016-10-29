@@ -10,6 +10,7 @@ use skeeks\cms\components\Cms;
 use skeeks\cms\models\CmsContentElement;
 use skeeks\cms\relatedProperties\models\RelatedPropertiesModel;
 use skeeks\cms\relatedProperties\PropertyType;
+use skeeks\cms\rhExtra\widgets\ExtraInputWidget;
 use skeeks\cms\widgets\ColorInput;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -58,7 +59,6 @@ class RelatedHandlerExtra extends PropertyType
     public function renderForActiveForm()
     {
         $field = parent::renderForActiveForm();
-
 
         $field->widget(ExtraInputWidget::className());
 

@@ -5,7 +5,7 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 13.09.2016
  */
-namespace skeeks\cms\rhExtra;
+namespace skeeks\cms\rhExtra\widgets;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
