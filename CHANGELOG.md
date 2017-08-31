@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0
+-----------------
+ * Update
+ 
 1.0.0-rc1
 -----------------
  * Fixed: https://github.com/skeeks-cms/cms-related-handler-extra/issues/1
