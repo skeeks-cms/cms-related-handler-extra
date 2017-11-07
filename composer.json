@@ -22,5 +22,10 @@
         "psr-4": {
             "skeeks\\cms\\rhExtra\\": ""
         }
+    },
+    "extra": {
+        "config-plugin": {
+            "web": "config/main.php"
+        }
     }
 }
