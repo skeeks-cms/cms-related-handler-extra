@@ -56,9 +56,9 @@ class RelatedHandlerExtra extends PropertyType
     /**
      * @return \yii\widgets\ActiveField
      */
-    public function renderForActiveForm()
+    public function renderForActiveForm(RelatedPropertiesModel $relatedPropertiesModel)
     {
-        $field = parent::renderForActiveForm();
+        $field = parent::renderForActiveForm($relatedPropertiesModel);
 
         $field->widget(ExtraInputWidget::className());
 
@@ -114,9 +114,9 @@ class RelatedHandlerExtra extends PropertyType
      *
      * @return $this
      */
-    public function addRules()
+    public function addRules(RelatedPropertiesModel $relatedPropertiesModel)
     {
-        $this->property->relatedPropertiesModel->addRule($this->property->code, 'safe');
+        $relatedPropertiesModel->addRule($this->property->code, 'safe');
 
         return $this;
     }
@@ -124,9 +124,9 @@ class RelatedHandlerExtra extends PropertyType
     /**
      * @return string
      */
-    public function getStringValue()
+    public function getStringValue(RelatedPropertiesModel $relatedPropertiesModel)
     {
-        $value = $this->property->relatedPropertiesModel->getAttribute($this->property->code);
+        $value = $relatedPropertiesModel->getAttribute($this->property->code);
 
         $result = [];
         if (is_array($value))
